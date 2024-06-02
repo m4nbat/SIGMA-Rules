@@ -1,0 +1,23 @@
+title: Detect Suspicious User Agents - rapeflake and DBeaver_DBeaverUltimate
+id: 7195a772-4b3f-43a4-a210-6a003d65cap2
+status: test
+description: Detects suspicious user agent strings in proxy logs specifically for rapeflake and DBeaver_DBeaverUltimate
+references: -https://community.snowflake.com/s/article/Communication-ID-0108977-Additional-Information
+author: manb4t
+date: 2024/06/02
+tags:
+    - attack.t1567 #Exfiltration Over Web Service
+    - attack.exfiltration
+logsource:
+    category: proxy
+    product: webproxy
+    service: http
+detection:
+    selection1:
+        c-useragent|contains:
+            - 'rapeflake'
+            - 'DBeaver_DBeaverUltimate'
+    condition: selection1
+falsepositives:
+    - Unknown
+level: low
